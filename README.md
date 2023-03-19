@@ -30,5 +30,8 @@ npm install -g
 npx otaku
 ```
 
+## tutorial
+
+<img style="width: 100%" src="./assets/tutorial.jpg" alt="tutorial.jpg" />
 
 > built with ♥️ by fiandev
