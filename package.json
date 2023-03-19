@@ -1,5 +1,5 @@
 {
-  "name": "y",
+  "name": "otaku-downloader",
   "version": "1.0.0",
   "description": "tools for automatically downloading anime from otakudesu",
   "main": "index.js",

@@ -18,7 +18,7 @@ const getLinkDownloads = async (url) => {
         .each(function () {
           let vendor = $(this).text();
           let link = $(this).attr("href");
-          result[quality][vendor] = link;
+          result[quality][vendor.toLowerCase()] = link;
         });
     });
 

@@ -103,7 +103,7 @@ const getInfoAnime = async (url) => {
     );
 
     result.episode_list =
-      episode_list.lengtb === 0
+      episode_list.length === 0
         ? [
             {
               title: "Masih kosong gan",
@@ -112,9 +112,9 @@ const getInfoAnime = async (url) => {
               uploaded_on: "Masih kosong gan",
             },
           ]
-        : episode_list;
-    /* return */
+        : episode_list.reverse(); // start from episode 1
   } catch (e) {
+    /* return */
     return false;
   }
   //console.log(result);
