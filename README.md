@@ -30,6 +30,9 @@ npm install -g
 npx otaku
 ```
 
+## preview
+<img style="width: 100%" src="./assets/preview.jpg" alt="preview.jpg" />
+
 ## tutorial
 
 <img style="width: 100%" src="./assets/tutorial.jpg" alt="tutorial.jpg" />
