@@ -1,0 +1,43 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "description": "tools for automatically downloading anime from otakudesu",
+  "main": "index.js",
+  "bin": {
+    "otaku": "./bin/otaku"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "fiandev",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^3.2.4",
+    "axios": "^0.21.2",
+    "cli-progress": "^3.12.0",
+    "colors": "^1.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "enquirer": "^2.3.6",
+    "express": "^4.17.1",
+    "html-table-to-json": "v1.0.0",
+    "https": "^1.0.0",
+    "jsdom": "^19.0.0",
+    "mathjs": "^11.7.0",
+    "url": "^0.11.0",
+    "zs-extract": "^1.4.2"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fiandev/otaku-downloader.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fiandev/otaku-downloader/issues"
+  },
+  "homepage": "https://github.com/fiandev/otaku-downloader#readme"
+}
