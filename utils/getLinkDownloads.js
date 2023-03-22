@@ -16,9 +16,9 @@ const getLinkDownloads = async (url) => {
       $(this)
         .find("a")
         .each(function () {
-          let vendor = $(this).text();
+          let vendor = $(this).text().trim().toLowerCase();
           let link = $(this).attr("href");
-          result[quality][vendor.toLowerCase()] = link;
+          result[quality][vendor] = link;
         });
     });
 

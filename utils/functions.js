@@ -1,10 +1,10 @@
-const { Select } = require("enquirer");
+const { Select, prompt } = require("enquirer");
 
 const select = async ({ items = [], message = "", name = "" }) => {
   let question = new Select({
     name: name,
     message: message,
-    choices: items,
+    choices: items.map((v) => v),
   });
 
   return await question.run();
@@ -22,7 +22,17 @@ const sluggable = (str = " ") => {
   return str.toLowerCase().replace(/((\s|\W|\"|\'|\`)+)/g, "-");
 };
 
+const input = async (label, name = "input") => {
+  return await prompt({
+    type: "input",
+    name: name,
+    message: label,
+  });
+};
+
 module.exports = {
   getQuality,
   sluggable,
+  select,
+  input,
 };
