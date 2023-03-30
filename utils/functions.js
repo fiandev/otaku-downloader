@@ -1,4 +1,5 @@
 const { Select, prompt } = require("enquirer");
+const env = require("./env.js");
 
 const select = async ({ items = [], message = "", name = "" }) => {
   let question = new Select({
@@ -23,11 +24,56 @@ const sluggable = (str = " ") => {
 };
 
 const input = async (label, name = "input") => {
-  return await prompt({
+  let answer = await prompt({
     type: "input",
     name: name,
     message: label,
   });
+  return answer[name];
+};
+
+const getEpisode = async (episodes) => {
+  let start = await select({
+    items: episodes,
+    message: "select start episode for download",
+  });
+
+  let end = episodes[episodes.length - 1];
+  if (episodes.slice(episodes.indexOf(start) + 1).length > 0) {
+    end = await select({
+      items: episodes.slice(episodes.indexOf(start) + 1),
+      message: "select end episode for download",
+    });
+  }
+
+  /* parsing to number */
+  start = Number(start.replace("episode ", ""));
+  end = Number(end.replace("episode ", ""));
+  if (start < episodes[0]) {
+    console.log(`❌ ${colors.red("invalid start episode !")}`);
+    return await getEpisode(episodes);
+  }
+
+  if (end < start) {
+    console.log(`❌ ${colors.red("invalid end episode !")}`);
+    return await getEpisode(episodes);
+  }
+
+  return [start, end];
+};
+
+const verifyAnimeURL = (url) => {
+  const reject = () => {
+    console.log("invalid anime page url");
+    return false;
+  };
+  let baseURL = new URL(env("baseURL"));
+  try {
+    let { hostname, pathname } = new URL(url);
+    if (baseURL.hostname !== hostname) return reject();
+  } catch (e) {
+    return reject();
+  }
 };
 
 module.exports = {
@@ -35,4 +81,6 @@ module.exports = {
   sluggable,
   select,
   input,
+  getEpisode,
+  verifyAnimeURL,
 };
