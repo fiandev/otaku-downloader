@@ -67,13 +67,15 @@ const verifyAnimeURL = (url) => {
     console.log("invalid anime page url");
     return false;
   };
-  let baseURL = new URL(env("baseURL"));
+  let baseURL = new URL(env("baseURL", url));
   try {
     let { hostname, pathname } = new URL(url);
     if (baseURL.hostname !== hostname) return reject();
   } catch (e) {
     return reject();
   }
+  
+  return true;
 };
 
 module.exports = {

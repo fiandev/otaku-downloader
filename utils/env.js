@@ -5,5 +5,5 @@ module.exports = (env_key, default_value = "") => {
     typeof process.env[env_key] !== "undefined"
       ? process.env[env_key]
       : default_value;
-  return value.toLowerCase();
+  return value;
 };
