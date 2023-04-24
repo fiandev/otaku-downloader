@@ -1,7 +1,7 @@
 name: Auto Merge Pull Request
 
 on:
-  push:
+  pull_request:
     branches:
       - master
 
