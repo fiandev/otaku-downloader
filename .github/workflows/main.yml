@@ -1,0 +1,13 @@
+name: Auto Merge Pull Request
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  auto_merge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dependabot Auto Merge
+        uses: ahmadnassri/action-dependabot-auto-merge@v2.6.6
