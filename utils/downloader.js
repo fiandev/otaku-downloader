@@ -27,18 +27,22 @@ const download = async (url, dest = "./") => {
       } else {
         console.log("✅  " + _colors.green("Server Response"));
         const size = parseInt(res.headers["content-length"], 10);
+        
         const filename = decodeURIComponent(
           res.headers["content-disposition"].match(
             /filename\*?=['"]?(?:UTF-\d['"]*)?([^;\r\n"']*)['"]?;?/
           )[1]
         );
+        
         let currentSize = 0;
         console.log(
           "☕  " + _colors.yellow("Start Downloading File : " + filename)
         );
         if (!_fs.existsSync(dest)) _fs.mkdirSync(dest, { recursive: true });
         const file = _fs.createWriteStream(_path.join(dest, filename));
+        
         res.pipe(file);
+        
         const loadbar = new _proggers.Bar(
           {
             format:
