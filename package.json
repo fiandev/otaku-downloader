@@ -8,7 +8,9 @@
   },
   "scripts": {
     "start": "node .",
-    "prettier": "prettier ./**/*.js -w"
+    "prettier": "prettier ./**/*.js -w",
+    "dev": "webpack --watch",
+    "bundle": "webpack"
   },
   "keywords": [],
   "author": "fiandev",
@@ -40,5 +42,9 @@
   "bugs": {
     "url": "https://github.com/fiandev/otaku-downloader/issues"
   },
-  "homepage": "https://github.com/fiandev/otaku-downloader#readme"
+  "homepage": "https://github.com/fiandev/otaku-downloader#readme",
+  "devDependencies": {
+    "webpack": "^5.85.0",
+    "webpack-cli": "^5.1.1"
+  }
 }

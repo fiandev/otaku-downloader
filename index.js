@@ -9,8 +9,8 @@ const main = async () => {
     items: ["zippy", "mega"]
   });
   
-  if (!verifyAnimeURL(animeURL)) return;
-  if (!Downloader[method](animeURL)) main();
+  if (!verifyAnimeURL(animeURL)) return main();
+  if (!Downloader[method](animeURL)) return main();
 };
 
 main();
