@@ -1,3 +1,6 @@
 /node_modules
 /vendor
+/test
+index.test.js
+test.js
 !.gitignore

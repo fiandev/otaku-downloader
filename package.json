@@ -1,6 +1,6 @@
 {
   "name": "otaku-downloader",
-  "version": "1.5.0",
+  "version": "2.0.0",
   "description": "tools for automatically downloading anime from otakudesu",
   "main": "index.js",
   "bin": {
@@ -22,13 +22,13 @@
     "colors": "^1.4.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
-    "enquirer": "^2.3.6",
     "express": "^4.17.1",
     "html-table-to-json": "v1.0.0",
     "https": "^1.0.0",
     "jsdom": "^19.0.0",
     "mathjs": "^11.7.0",
     "megajs": "^1.1.1",
+    "prompts": "^2.4.2",
     "url": "^0.11.0",
     "zs-extract": "^1.4.2"
   },

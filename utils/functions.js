@@ -1,14 +1,24 @@
-const { Select, prompt } = require("enquirer");
+const prompts = require("prompts");
+const colors = require("colors");
+
 const env = require("./env.js");
 
-const select = async ({ items = [], message = "", name = "" }) => {
-  let question = new Select({
+const select = async ({ items = [], message = "", name = "select" }) => {
+  let choices = items.map((v) => { 
+    return { 
+      name: v, 
+      value: v
+    };
+  });
+  
+  let response = await prompts({
+    type: "select",
     name: name,
     message: message,
-    choices: items.map((v) => v),
+    choices: choices,
   });
 
-  return await question.run();
+  return response[name];
 };
 
 const getQuality = async () => {
@@ -24,8 +34,8 @@ const sluggable = (str = " ") => {
 };
 
 const input = async (label, name = "input") => {
-  let answer = await prompt({
-    type: "input",
+  let answer = await prompts({
+    type: "text",
     name: name,
     message: label,
   });
@@ -78,6 +88,15 @@ const verifyAnimeURL = (url) => {
   return true;
 };
 
+const info = (text) => {
+  console.log(`
+
+${ colors.yellow("[!]") } information
+${ text }
+
+  `);
+};
+
 module.exports = {
   getQuality,
   sluggable,
@@ -85,4 +104,5 @@ module.exports = {
   input,
   getEpisode,
   verifyAnimeURL,
+  info,
 };
