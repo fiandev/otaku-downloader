@@ -46,6 +46,16 @@ npm install -g
 npx otaku
 ```
 
+## lainnya (baris perintah)
+
+### rubah baseURL pada lingkungan aplikasi (penting)
+
+```shell
+# contoh
+otaku --baseURL=https://otakudesu.lol
+```
+
+
 ## pratinjau
 <img style="width: 100%" src="./assets/preview.jpg" alt="preview.jpg" />
 

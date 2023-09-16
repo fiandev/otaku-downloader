@@ -46,6 +46,15 @@ npm install -g
 npx otaku
 ```
 
+## others (command line)
+
+### change baseURL environment (important)
+
+```shell
+# example
+otaku --baseURL=https://otakudesu.lol
+```
+
 ## preview
 <img style="width: 100%" src="https://raw.githubusercontent.com/fiandev/otaku-downloader/master/assets/preview.jpg" alt="preview.jpg" />
 

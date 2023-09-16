@@ -1,3 +1,4 @@
 #!/usr/bin/env node
 
+require("../utils/argv-handler.js");
 require("../index.js");

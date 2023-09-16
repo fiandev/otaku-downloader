@@ -74,7 +74,12 @@ const getEpisode = async (episodes) => {
 
 const verifyAnimeURL = (url) => {
   const reject = () => {
-    console.log("invalid anime page url");
+    info(`
+invalid anime page url, host must be ${ new URL(env("baseURL")).hostname } !
+you can change this with command :
+ ${ colors.gray("# example") }
+ ${ colors.cyan("otaku --baseURL=https://otakudesu.wiki") }
+   `);
     return false;
   };
   let baseURL = new URL(env("baseURL", url));
@@ -97,6 +102,16 @@ ${ text }
   `);
 };
 
+const parseCase = (any, formatCase = "lower") => {
+  const format = ["lower", "upper"];
+  
+  if (!format.includes(formatCase)) throw `formatCase must be ${ format.join("|") }, ${ formatCase } given`;
+  
+  if (["string", "number"].includes(typeof any)) return any.toString()[`to${ formatCase[0].toUpperCase() + formatCase.slice(1, formatCase.length) }Case`]();
+  if (Array.isArray(any)) return any.map((value) => parseCase(value, formatCase));
+  if (["object"].includes(typeof any) && !Array.isArray(any)) return Object.fromEntries(Object.keys(any).map((key, index) => [key, Object.values(any).map((value) => parseCase(value, formatCase))[index]]));
+};
+
 module.exports = {
   getQuality,
   sluggable,
@@ -105,4 +120,5 @@ module.exports = {
   getEpisode,
   verifyAnimeURL,
   info,
+  parseCase,
 };

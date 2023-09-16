@@ -1,4 +1,4 @@
-const { input, select, verifyAnimeURL } = require("./utils/functions.js");
+const { input, select, verifyAnimeURL  } = require("./utils/functions.js");
 const Downloader = require("./lib/Downloader.js");
 const env = require("./utils/env.js");
 
