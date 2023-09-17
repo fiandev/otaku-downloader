@@ -4,13 +4,13 @@ const colors = require("colors");
 const env = require("./env.js");
 
 const select = async ({ items = [], message = "", name = "select" }) => {
-  let choices = items.map((v) => { 
-    return { 
-      name: v, 
-      value: v
+  let choices = items.map((v) => {
+    return {
+      name: v,
+      value: v,
     };
   });
-  
+
   let response = await prompts({
     type: "select",
     name: name,
@@ -57,8 +57,8 @@ const getEpisode = async (episodes) => {
   }
 
   /* parsing to number */
-  start = Number(start.replace("episode ", ""));
-  end = Number(end.replace("episode ", ""));
+  start = episodes.findIndex((episode) => episode === start) + 1;
+  end = episodes.findIndex((episode) => episode === end) + 1;
   if (start < episodes[0]) {
     console.log(`❌ ${colors.red("invalid start episode !")}`);
     return await getEpisode(episodes);
@@ -75,10 +75,10 @@ const getEpisode = async (episodes) => {
 const verifyAnimeURL = (url) => {
   const reject = () => {
     info(`
-invalid anime page url, host must be ${ new URL(env("baseURL")).hostname } !
+invalid anime page url, host must be ${new URL(env("baseURL")).hostname} !
 you can change this with command :
- ${ colors.gray("# example") }
- ${ colors.cyan("otaku --baseURL=https://otakudesu.wiki") }
+ ${colors.gray("# example")}
+ ${colors.cyan("otaku --baseURL=https://otakudesu.wiki")}
    `);
     return false;
   };
@@ -89,27 +89,42 @@ you can change this with command :
   } catch (e) {
     return reject();
   }
-  
+
   return true;
 };
 
 const info = (text) => {
   console.log(`
 
-${ colors.yellow("[!]") } information
-${ text }
+${colors.yellow("[!]")} information
+${text}
 
   `);
 };
 
 const parseCase = (any, formatCase = "lower") => {
   const format = ["lower", "upper"];
-  
-  if (!format.includes(formatCase)) throw `formatCase must be ${ format.join("|") }, ${ formatCase } given`;
-  
-  if (["string", "number"].includes(typeof any)) return any.toString()[`to${ formatCase[0].toUpperCase() + formatCase.slice(1, formatCase.length) }Case`]();
-  if (Array.isArray(any)) return any.map((value) => parseCase(value, formatCase));
-  if (["object"].includes(typeof any) && !Array.isArray(any)) return Object.fromEntries(Object.keys(any).map((key, index) => [key, Object.values(any).map((value) => parseCase(value, formatCase))[index]]));
+
+  if (!format.includes(formatCase))
+    throw `formatCase must be ${format.join("|")}, ${formatCase} given`;
+
+  if (["string", "number"].includes(typeof any))
+    return any
+      .toString()
+      [
+        `to${
+          formatCase[0].toUpperCase() + formatCase.slice(1, formatCase.length)
+        }Case`
+      ]();
+  if (Array.isArray(any))
+    return any.map((value) => parseCase(value, formatCase));
+  if (["object"].includes(typeof any) && !Array.isArray(any))
+    return Object.fromEntries(
+      Object.keys(any).map((key, index) => [
+        key,
+        Object.values(any).map((value) => parseCase(value, formatCase))[index],
+      ]),
+    );
 };
 
 module.exports = {

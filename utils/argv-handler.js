@@ -16,19 +16,20 @@ for (let key in args) {
     let contentFile = fs.readFileSync(pathfile, "utf8");
     let environment = env();
     let argsValue = typeof args[key] !== "boolean" ? args[key] : env("baseURL");
-    
+
     environment.baseURL = argsValue;
-    
+
     let content = "";
     for (let x in environment) {
-      if (contentFile.search(`${ x }=`) > -1) content += `${ x }=${ environment[x] }\n`;
+      if (contentFile.search(`${x}=`) > -1)
+        content += `${x}=${environment[x]}\n`;
     }
-    
+
     fs.writeFileSync(pathfile, content);
-    
-    info(`success change baseURL on environment to ${ argsValue }`);
+
+    info(`success change baseURL on environment to ${argsValue}`);
     taskCompleted = true;
-  };
+  }
 }
 
 taskCompleted ? process.exit() : false;

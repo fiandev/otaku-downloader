@@ -37,7 +37,7 @@ class megaDownloader {
       const file = _fs.createWriteStream(_path.join(dest, filename));
       stream.pipe(file);
       console.log(
-        "☕  " + _colors.yellow("Start Downloading File : " + filename)
+        "☕  " + _colors.yellow("Start Downloading File : " + filename),
       );
       let currentSize = 0;
       const loadbar = new _proggers.Bar(
@@ -48,7 +48,7 @@ class megaDownloader {
             " {percentage}% | {current}/{size} | ETA: {eta}s | Speed: {speed}",
           barsize: 25,
         },
-        _proggers.Presets.shades_classic
+        _proggers.Presets.shades_classic,
       );
       loadbar.start(size, 0, {
         size: calcSize(size, 3),
@@ -66,14 +66,14 @@ class megaDownloader {
         loadbar.stop();
         file.close();
         console.log(
-          "✅  " + _colors.green("Success Download File : " + filename)
+          "✅  " + _colors.green("Success Download File : " + filename),
         );
         resolve();
       });
       stream.on("error", (_) => {
         loadbar.stop();
         console.log(
-          "❌  " + _colors.green("Error Download File : " + filename)
+          "❌  " + _colors.green("Error Download File : " + filename),
         );
         reject();
       });

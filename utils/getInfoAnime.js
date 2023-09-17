@@ -34,7 +34,7 @@ const getInfoAnime = async (url) => {
         .text()
         .replace("Japanese: ", "");
       result.score = parseFloat(
-        $(this).find("p").children().eq(2).text().replace("Skor: ", "")
+        $(this).find("p").children().eq(2).text().replace("Skor: ", ""),
       );
       result.producer = $(this)
         .find("p")
@@ -55,7 +55,12 @@ const getInfoAnime = async (url) => {
         .text()
         .replace("Status: ", "");
       result.total_episode = parseInt(
-        $(this).find("p").children().eq(6).text().replace("Total Episode: ", "")
+        $(this)
+          .find("p")
+          .children()
+          .eq(6)
+          .text()
+          .replace("Total Episode: ", ""),
       );
       result.duration = $(this)
         .find("p")
@@ -99,7 +104,7 @@ const getInfoAnime = async (url) => {
           uploaded_on: $(element).find(".zeebr").text(),
         };
         episode_list.push(dataList);
-      }
+      },
     );
 
     result.episode_list =

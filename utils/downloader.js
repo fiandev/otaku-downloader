@@ -21,28 +21,29 @@ const download = async (url, dest = "./") => {
     req.on("response", (res) => {
       if (!res.headers["content-disposition"]) {
         console.log(
-          "🔁  " + _colors.blue("Server Download Error, Try To Get New Link...")
+          "🔁  " +
+            _colors.blue("Server Download Error, Try To Get New Link..."),
         );
         download(url);
       } else {
         console.log("✅  " + _colors.green("Server Response"));
         const size = parseInt(res.headers["content-length"], 10);
-        
+
         const filename = decodeURIComponent(
           res.headers["content-disposition"].match(
-            /filename\*?=['"]?(?:UTF-\d['"]*)?([^;\r\n"']*)['"]?;?/
-          )[1]
+            /filename\*?=['"]?(?:UTF-\d['"]*)?([^;\r\n"']*)['"]?;?/,
+          )[1],
         );
-        
+
         let currentSize = 0;
         console.log(
-          "☕  " + _colors.yellow("Start Downloading File : " + filename)
+          "☕  " + _colors.yellow("Start Downloading File : " + filename),
         );
         if (!_fs.existsSync(dest)) _fs.mkdirSync(dest, { recursive: true });
         const file = _fs.createWriteStream(_path.join(dest, filename));
-        
+
         res.pipe(file);
-        
+
         const loadbar = new _proggers.Bar(
           {
             format:
@@ -51,7 +52,7 @@ const download = async (url, dest = "./") => {
               " {percentage}% | {current}/{size} | ETA: {eta}s | Speed: {speed}",
             barsize: 25,
           },
-          _proggers.Presets.shades_classic
+          _proggers.Presets.shades_classic,
         );
         loadbar.start(size, 0, {
           size: calcSize(size, 3),
@@ -69,14 +70,14 @@ const download = async (url, dest = "./") => {
           loadbar.stop();
           file.close();
           console.log(
-            "✅  " + _colors.green("Success Download File : " + filename)
+            "✅  " + _colors.green("Success Download File : " + filename),
           );
           resolve();
         });
         res.on("error", (_) => {
           loadbar.stop();
           console.log(
-            "❌  " + _colors.green("Error Download File : " + filename)
+            "❌  " + _colors.green("Error Download File : " + filename),
           );
           reject();
         });
