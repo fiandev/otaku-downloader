@@ -4,7 +4,7 @@ const { input } = require("../utils/functions.js");
 const megaDownloader = require("../utils/megaDownloader.js");
 
 const main = async () => {
-  let megaURL = input("Insert mega url");
+  let megaURL = await input("Insert mega url");
   let dest = path.resolve(process.cwd());
   
   try {
