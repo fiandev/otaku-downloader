@@ -3,15 +3,14 @@ const path = require("path");
 const { input } = require("../utils/functions.js");
 const megaDownloader = require("../utils/megaDownloader.js");
 
-const main = async () => {
+( async () => {
   let megaURL = await input("Insert mega url");
   let dest = path.resolve(process.cwd());
   
   try {
       await megaDownloader.download(megaURL, dest);
+      console.log("done ✅");
   } catch (e) {
     console.log(`something went wrong!`, e.message);
   }
-};
-
-main();
+})();

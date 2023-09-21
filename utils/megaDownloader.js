@@ -18,7 +18,11 @@ class megaDownloader {
   static async download(url, dest) {
     let response = await axios.get(url);
     let megaURL = response.request.res.responseUrl;
+    
+    megaURL = url.search("mega") > -1 ? url : megaURL;
+    
     let key = new URL(megaURL).hash;
+    
     /* verify file key */
     try {
       await verify(key);
