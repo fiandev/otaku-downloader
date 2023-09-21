@@ -4,7 +4,8 @@
   "description": "tools for automatically downloading anime from otakudesu",
   "main": "index.js",
   "bin": {
-    "otaku": "./bin/otaku"
+    "otaku": "./bin/otaku",
+    "megaDL": "./bin/megaDL"
   },
   "scripts": {
     "start": "node .",

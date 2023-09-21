@@ -1,0 +1,17 @@
+#!/usr/bin/env node
+const path = require("path");
+const { input } = require("../utils/functions.js");
+const megaDownloader = require("../utils/megaDownloader.js");
+
+const main = async () => {
+  let megaURL = input("Insert mega url");
+  let dest = path.resolve(process.cwd());
+  
+  try {
+      await megaDownloader.download(megaURL, dest);
+  } catch (e) {
+    console.log(`something went wrong!`, e.message);
+  }
+};
+
+main();
