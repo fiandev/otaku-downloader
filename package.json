@@ -27,7 +27,7 @@
     "express": "^4.17.1",
     "html-table-to-json": "v1.0.0",
     "https": "^1.0.0",
-    "jsdom": "^19.0.0",
+    "jsdom": "^23.1.0",
     "mathjs": "^11.7.0",
     "megajs": "^1.1.1",
     "prompts": "^2.4.2",
